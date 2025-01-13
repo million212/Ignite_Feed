@@ -1,10 +1,10 @@
-// export function Post(props){
-//     return (
-//         <div>
-//             <strong>{props.author}</strong>
-//             <p>{props.content}</p>
-//         </div>
-//     )
-// }
+export function Post(post){
+    return (
+        <div>
+            <strong>{post.author}</strong>
+            <p>{post.content}</p>
+        </div>
+    )
+}
 
 

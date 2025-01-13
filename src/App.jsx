@@ -1,7 +1,11 @@
 import { Header } from './components/Header';
+import { Sidebar } from './components/Sidebar';
+
+import styles from './App.module.css';
 
 import './global.css';
-// import { Post } from "./Post"
+import { Post } from "./Post"
+
 
 export function App() {
   return (
@@ -9,15 +13,21 @@ export function App() {
 
       <Header />
 
-      {/* <Post 
-        author="Henrique" 
-        content="Henrique é um otimo programador"
-      />
+      <div className={styles.wrapper}>
+       
+       <Sidebar />
+        <main>
+          <Post
+            author="Diego Fernandes"
+            content="reprise"
+          />
 
-      <Post
-        author="Camila rodrigues"
-        content="Um otima funcionaria para o departamento"
-      /> */}
+          <Post
+            author="Rodrigo Ferreira"
+            content="reprise"
+          />
+        </main>
+      </div>
     </div>
   )
 }
