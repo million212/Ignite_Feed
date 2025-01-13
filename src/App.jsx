@@ -1,9 +1,15 @@
-import { Post } from "./Post"
+import { Header } from './components/Header';
+
+import './global.css';
+// import { Post } from "./Post"
 
 export function App() {
   return (
     <div>
-      <Post 
+
+      <Header />
+
+      {/* <Post 
         author="Henrique" 
         content="Henrique é um otimo programador"
       />
@@ -11,7 +17,7 @@ export function App() {
       <Post
         author="Camila rodrigues"
         content="Um otima funcionaria para o departamento"
-      />
+      /> */}
     </div>
   )
 }
