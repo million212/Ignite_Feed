@@ -6,10 +6,10 @@ import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 import styles from './Post.module.css';
 import { useState } from 'react';
- 
+
 export function Post({ author, publishedAt, content }) {
     const [comments, setComments] = useState([
-       'Post muito bacana hein!?'
+        'Post muito bacana hein!?'
     ])
 
     const [newCommentText, setNewCommentText] = useState('')
@@ -24,7 +24,7 @@ export function Post({ author, publishedAt, content }) {
         addSuffix: true,
     })
 
-   
+
 
     function handleCreateNewComment(event) {
         event.preventDefault()
@@ -33,12 +33,19 @@ export function Post({ author, publishedAt, content }) {
         setNewCommentText('');
     }
 
-    
     function handleNewCommentChange(event) {
         setNewCommentText(event.target.value);
-        
+
     }
 
+    function deleteComment(commentToDelete) {
+        const commentsWithoutDeleteOne = comments.filter(comment => {
+            return comment !== commentToDelete;
+        })
+
+        setComments(commentsWithoutDeleteOne);
+    }
+    
     return (
         <article className={styles.post}>
             <header>
@@ -61,9 +68,9 @@ export function Post({ author, publishedAt, content }) {
                         return <p key={line.content}>{line.content}</p>;
                     } else if (line.type === 'link') {
                         return (
-                        <p key={line.content}>
-                            <a href="#">{line.content}</a>
-                        </p>
+                            <p key={line.content}>
+                                <a href="#">{line.content}</a>
+                            </p>
                         );
                     }
                     return null;
@@ -77,7 +84,7 @@ export function Post({ author, publishedAt, content }) {
                     name="comment"
                     placeholder="Deixe um comentário"
                     value={newCommentText}
-                    onChange={handleNewCommentChange} 
+                    onChange={handleNewCommentChange}
                 />
 
                 <footer>
@@ -86,8 +93,14 @@ export function Post({ author, publishedAt, content }) {
             </form>
 
             <div className={styles.commentList}>
-                {comments.map(comment =>{
-                    return <Comment key={comment} content={comment}/>;
+                {comments.map(comment => {
+                    return (
+                        <Comment
+                            key={comment}
+                            content={comment}
+                            onDeleteComment={deleteComment}
+                        />
+                    );
                 })}
             </div>
         </article>
